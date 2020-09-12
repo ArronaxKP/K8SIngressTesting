@@ -26,7 +26,7 @@ spec:
           args:
             - /bin/sh
             - -c
-            - echo "${MY_POD_IP} - ${MY_POD_NAME}" >> /usr/local/apache2/htdocs/index.html; echo 'ready' > /usr/local/apache2/htdocs/host.html; httpd-foreground
+            - echo "<!DOCTYPE html><html><body><h1>Welcome ${MY_POD_IP} - ${MY_POD_NAME}</h1></body></html>" > /usr/local/apache2/htdocs/index.html; echo 'ready' > /usr/local/apache2/htdocs/host.html; httpd-foreground
           env:
             - name: MY_POD_NAME
               valueFrom:
