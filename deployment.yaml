@@ -26,7 +26,7 @@ spec:
           args:
             - /bin/sh
             - -c
-            - echo "${MY_POD_IP} - ${MY_POD_NAME}" >> /usr/local/apache2/htdocs/index.html ; httpd-foreground
+            - echo "${MY_POD_IP} - ${MY_POD_NAME}" >> /usr/local/apache2/htdocs/index.html; echo 'ready' > /usr/local/apache2/htdocs/host.html; httpd-foreground
           env:
             - name: MY_POD_NAME
               valueFrom:
@@ -48,7 +48,7 @@ spec:
             exec:
               command:
                 - ls
-                - /usr/local/apache2/htdocs/index.html
+                - /usr/local/apache2/htdocs/host.html
             initialDelaySeconds: 10
             periodSeconds: 3
             successThreshold: 1
