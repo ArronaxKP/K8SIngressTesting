@@ -75,7 +75,7 @@ Now deploy the load balancer
 kubectl apply -f jcmoraisjr-loadbalancer.yaml
 ```
 
-Draining is still not working when tested. We need to enable drain-support flag
+Draining is still not working when tested. We need to enable [drain-support flag](https://haproxy-ingress.github.io/docs/configuration/keys/#drain-support)
 
 ```bash
 kubectl edit configmap haproxy-ingress -n ingress-controller
