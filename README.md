@@ -104,3 +104,35 @@ kubectl delete pod haproxy-ingress-wn9hd -n ingress-controller
 ```
 
 It works
+
+## Istio
+
+Download and install istioctl- https://istio.io/latest/docs/setup/getting-started/
+
+```bash
+curl -L https://istio.io/downloadIstio | sh -
+```
+
+Install istio and lavel namespace for auto proxy envoy
+
+```bash
+istioctl install --set profile=demo
+kubectl label namespace default istio-injection=enabled
+```
+
+Deploy deployment and service:
+
+```bash
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Then apply istio config (virtaul service, gateway and destination rule)
+
+```bash
+kubectl apply -f istio-gateway.yaml
+```
+
+Test - session stickyness works - limits scaling (up or down) recreates all cookies and re-routes all traffic.
+
+There is no way to drain sessions using this ingress.
