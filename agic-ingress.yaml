@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: myingress
+  annotations:
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/cookie-based-affinity: "true"
+    appgw.ingress.kubernetes.io/connection-draining: "true"
+    appgw.ingress.kubernetes.io/connection-draining-timeout: "60"
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: myservice
+              servicePort: 80
+            path: /
